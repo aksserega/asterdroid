@@ -1,0 +1,15 @@
+[Unit]
+Description=Alice skill backed by Claude
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/alice-claude.env
+WorkingDirectory=/opt/alice-claude
+ExecStart=/opt/alice-claude/venv/bin/python server.py
+Restart=always
+RestartSec=3
+DynamicUser=yes
+
+[Install]
+WantedBy=multi-user.target
